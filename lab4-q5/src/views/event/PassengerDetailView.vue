@@ -4,9 +4,20 @@
   <p>
     Source: {{ passenger.Source }} to Destination: {{ passenger.Destination }}
   </p>
+  <button @click="edit">Edit</button>
 </template>
 <script>
 export default {
-  props: ['passenger']
+  props: ['passenger', 'resa'],
+  inject: ['GStore'],
+  methods: {
+    edit() {
+      this.GStore.flashMessage = 'The data has been update '
+      setTimeout(() => {
+        //After 3 secound remove it
+        this.GStore.flashMessage = ''
+      }, 5000)
+    }
+  }
 }
 </script>
