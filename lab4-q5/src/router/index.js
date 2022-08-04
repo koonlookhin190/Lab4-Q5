@@ -31,11 +31,24 @@ const routes = [
     component: PassengerLayoutView,
     beforeEnter: (to) => {
       return (
-        EventService.getPassenger(to.params.id) &&
-        EventService.getAirLine(to.params.id) //Return and params.id
+        EventService.getPassenger(to.params.id)
           .then((response) => {
             //Still need to set the data here
             GStore.passenger = response.data
+          })
+          .catch((error) => {
+            if (error.response && error.response.status == 404) {
+              return {
+                name: '404Resource',
+                params: { resource: 'passenger' }
+              }
+            } else {
+              return { name: 'NetworkError' }
+            }
+          }),
+        EventService.getAirLine(to.params.id) //Return and params.id
+          .then((response) => {
+            //Still need to set the data here
             GStore.airline = response.data
           })
           .catch((error) => {
@@ -50,6 +63,7 @@ const routes = [
           })
       )
     },
+
     children: [
       {
         path: 'passenger/:id',

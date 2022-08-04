@@ -17,6 +17,9 @@ export default {
         //After 3 secound remove it
         this.GStore.flashMessage = ''
       }, 5000)
+      this.$router.push({
+        name: 'PassengerView'
+      })
     }
   }
 }
