@@ -12,7 +12,7 @@ export default {
   inject: ['GStore'],
   methods: {
     edit() {
-      this.GStore.flashMessage = 'The data has been update '
+      this.GStore.flashMessage = 'The data is updating '
       setTimeout(() => {
         //After 3 secound remove it
         this.GStore.flashMessage = ''
