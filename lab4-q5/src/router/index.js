@@ -55,7 +55,7 @@ const routes = [
             if (error.response && error.response.status == 404) {
               return {
                 name: '404Resource',
-                params: { resource: 'passenger' }
+                params: { resource: 'airline' }
               }
             } else {
               return { name: 'NetworkError' }
